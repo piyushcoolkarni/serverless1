@@ -60,13 +60,15 @@ functions:
      - http:
          path: user/whatever
          method: get
+     - http:
+         path: cybage/lawn
   byeAPICICD2:
     handler: handler.bye
     events: 
     - http:
          path: user/bye
          method: get    
-#    alias: dev 
+    alias: dev 
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
