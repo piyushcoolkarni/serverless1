@@ -62,6 +62,7 @@ functions:
          method: get
      - http:
          path: cybage/lawn
+         method: get
   byeAPICICD2:
     handler: handler.bye
     events: 
