@@ -20,7 +20,7 @@ service: myserviceCICDGithub
 provider:
   name: aws
   runtime: nodejs4.3
-  profile: default
+  profile: production
 # you can overwrite defaults here
   stage: beta
 #  region: us-east-1
