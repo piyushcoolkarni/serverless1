@@ -121,7 +121,7 @@ functions:
 #resources:
 #  Resources:
 #    NewResource123:
-#      Type: AWS::S3::Bucket
+#      Type: AWS::S3::Bucket 
 #      Properties:
 #        BucketName: my-new-bucket-123
 #  Outputs:
