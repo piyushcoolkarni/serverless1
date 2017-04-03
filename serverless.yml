@@ -22,7 +22,7 @@ provider:
   runtime: nodejs4.3
   profile: production
 # you can overwrite defaults here
-  stage: beta
+  stage: qa
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
@@ -58,11 +58,13 @@ functions:
     handler: handler.hello
     events: 
      - http:
-         path: user/whatever
+         path: authentication/signin/{provider}
          method: get
+         integration: lambda-proxy
      - http:
-         path: cybage/lawn
+         path: authentication/callback/{provider}
          method: get
+         integration: lambda
      - http:
          path: cybage/{parking}
          method: get
@@ -70,8 +72,21 @@ functions:
     handler: handler.bye
     events: 
     - http:
-         path: user/bye
+         path: authentication/refresh/{some_token}
          method: get
+         cors: true
+         integration: lambda
+         request:
+           template:
+             application/json: |
+               {
+                  "some_token":"$input.params('some_token')",
+                  "id":"$input.params('id')",
+                  "state":"$input.params('state')",
+                  "host":"$input.params().header.get('host')",
+                  "stage":"$context.stage"
+                }
+             
     - http:
          path: userpost/bye
          method: post
