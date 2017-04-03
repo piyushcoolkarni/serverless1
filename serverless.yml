@@ -68,7 +68,10 @@ functions:
     events: 
     - http:
          path: user/bye
-         method: get    
+         method: get
+    - http:
+         path: userpost/bye
+         method: post
     alias: prod
 
 #    The following are a few example events you can configure
