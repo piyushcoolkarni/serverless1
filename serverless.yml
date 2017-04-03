@@ -72,6 +72,21 @@ functions:
     - http:
          path: userpost/bye
          method: post
+         cors: true
+         documentation:
+           requestModels:
+              application/json: emptyRequest
+           methodResponses:
+              - statusCode: 200
+                responseModels:
+                  application/json: activityGetResponse
+              - statusCode: 400
+                responseModels:
+                  application/json: activityGetResponse
+              - statusCode: 500
+                responseModels:
+                  application/json: activityGetResponse
+         
     alias: prod
 
 #    The following are a few example events you can configure
