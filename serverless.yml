@@ -22,7 +22,8 @@ provider:
   runtime: nodejs4.3
   profile: production
 # you can overwrite defaults here
-  stage: qa
+  #stage: qa
+  stage: onlyAPI 
 #  region: us-east-1
 
 # you can add statements to the Lambda function's IAM Role here
@@ -55,56 +56,13 @@ provider:
 
 functions:
   helloAPICICDgithub:
-    handler: handler.hello
+    #handler: handler.hello
     events: 
      - http:
          path: authentication/signin/{provider}
          method: get
          integration: lambda-proxy
-     - http:
-         path: authentication/callback/{provider}
-         method: get
-         integration: lambda
-     - http:
-         path: cybage/{parking}
-         method: get
-  byeAPICICD2:
-    handler: handler.bye
-    events: 
-    - http:
-         path: authentication/refresh/{some_token}
-         method: get
-         cors: true
-         integration: lambda
-         request:
-           template:
-             application/json: |
-               {
-                  "some_token":"$input.params('some_token')",
-                  "id":"$input.params('id')",
-                  "state":"$input.params('state')",
-                  "host":"$input.params().header.get('host')",
-                  "stage":"$context.stage"
-                }
-             
-    - http:
-         path: userpost/bye
-         method: post
-         cors: true
-         documentation:
-           requestModels:
-              application/json: emptyRequest
-           methodResponses:
-              - statusCode: 200
-                responseModels:
-                  application/json: activityGetResponse
-              - statusCode: 400
-                responseModels:
-                  application/json: activityGetResponse
-              - statusCode: 500
-                responseModels:
-                  application/json: activityGetResponse
-       
+     #here#
     alias: prod
          
 #    The following are a few example events you can configure
